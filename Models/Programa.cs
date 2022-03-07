@@ -1,4 +1,4 @@
-namespace Ejercicio3
+namespace ControlEscolar.Models
 {
     class Programa
     {
@@ -30,6 +30,10 @@ namespace Ejercicio3
         {
             get { return _id_programa; }
             set { _id_programa = value; }
+        }
+        public override string ToString()
+        {
+            return $"Id: {_id_programa}, Nombre: {_nombre_programa}, Unidad: {_unidad.nombre_unidad}";
         }
     }
 }

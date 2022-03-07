@@ -1,4 +1,4 @@
-namespace Ejercicio3
+namespace ControlEscolar.Models
 {
     class Unidad
     {
@@ -21,6 +21,10 @@ namespace Ejercicio3
         {
             get { return _id_unidad; }
             set { _id_unidad = value; }
-        }      
+        }
+        public override string ToString()
+        {
+            return $"Id: {_id_unidad}, Nombre: {_nombre_unidad}";
+        }
     }
 }

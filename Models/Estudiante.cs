@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ejercicio3
+namespace ControlEscolar.Models
 {
     internal class Estudiante : Persona
     {
         private string _matricula;
-        private string _tutor;
-        private string _foto;
+        private string? _tutor;
+        private string? _foto;
         private List<InscripcionActual> _inscripcion;
         private Programa _programa;
         public Programa programa
@@ -28,14 +28,14 @@ namespace Ejercicio3
 
 
 
-        public string foto
+        public string? foto
         {
             get { return _foto; }
             set { _foto = value; }
         }
 
 
-        public string tutor
+        public string? tutor
         {
             get { return _tutor; }
             set { _tutor = value; }
@@ -63,6 +63,10 @@ namespace Ejercicio3
             this._matricula = matricula;
             this._inscripcion = new List<InscripcionActual>();
             this._programa=programa;
+        }
+        public override string ToString()
+        {
+            return $"Matrícula: {_matricula}, Nombre: {nombre}, A.Paterno: {apellido_paterno}, A.Materno: {apellido_materno}";
         }
     }
 }
