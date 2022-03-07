@@ -41,9 +41,188 @@ namespace ControlEscolar
                 case 2:
                     showMenuAdminEstudiantes();
                     break;
-                case 3: break;
+                case 3:
+                    showMenuInscripcion();
+                    break;
                 case 4: break;
             }
+        }
+
+        private void showMenuInscripcion()
+        {
+            int opcionSeleccionada = 0;
+            Console.Clear();
+            do
+            {
+                Console.WriteLine("Inscripciones");
+                Console.WriteLine("1.- Ofertar Materias");
+                Console.WriteLine("2.- Ver Materias Ofertadas");
+                Console.WriteLine("3.- Inscribir Estudiantes");
+                Console.WriteLine("4.- Ver Lista de Asistencia");
+                Console.WriteLine("5.- Salir");
+            } while (!validaMenu(5, ref opcionSeleccionada));
+            switch (opcionSeleccionada)
+            {
+
+                case 1:
+                    ofertarMateria();
+                    break;
+                case 2:
+                    listarOferta();
+                    Console.WriteLine("Presiona 'Enter' para continuar...");
+                    Console.ReadLine();
+                    showMenuInscripcion();
+                    break;
+                case 3:
+                    inscribirEstudiante();
+                    break;
+                case 4:
+                    listaAsistencia();
+                    break;
+                case 5:
+                    showMenuPrincipal();
+                    break;
+            }
+        }
+
+        private void listaAsistencia()
+        {
+             GrupoMateria? materia;
+            int? id;
+            Console.Clear();
+            listarOferta();
+            do
+            {
+                id = pedirValorInt("Id de la materia");
+                materia = _grupoMateria.FirstOrDefault(p => p.idGrupoMateria == id);
+                if (materia == null)
+                {
+                    Console.WriteLine("Materia no encontrada.");
+                }
+            } while (materia == null);
+            Console.Clear();
+            Console.WriteLine("Lista de asistencia");
+            foreach (Estudiante item in _estudiantes.Where(e=>e.inscripcion.Any(i=>i.grupo_materia==materia)))
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("Presiona 'Enter' para continuar...");
+            Console.ReadLine();
+            showMenuInscripcion();
+        }
+
+        private void inscribirEstudiante()
+        {
+            Estudiante? estudiante;
+            string? matricula;
+            Console.Clear();
+            listarEstudiantes();
+            do
+            {
+                matricula = pedirValorString("Id del programa en donde se va a ofertar");
+                estudiante = _estudiantes.FirstOrDefault(e => e.matricula == matricula);
+                if (estudiante == null)
+                {
+                    Console.WriteLine("Estudiante no encontrado.");
+                }
+            } while (estudiante == null);
+            listarOferta();
+            GrupoMateria? grupo;
+            int? id;
+            do
+            {
+                id = pedirValorInt("Id de la materia a inscribir");
+                grupo = _grupoMateria.FirstOrDefault(gm => gm.idGrupoMateria == id);
+                if (grupo == null)
+                {
+                    Console.WriteLine("Materia no encontrada.");
+                }
+            } while (grupo == null);
+            CicloEscolar? ciclo =_ciclos.FirstOrDefault(c=>c.idCiclo=="2122SPAR");
+            InscripcionActual inscripcionActual = new InscripcionActual(grupo, ciclo);
+            estudiante.inscripcion.Add(inscripcionActual);
+            Console.WriteLine("Se inscribio al Estudiante correctamente. Presiona 'Enter' para continuar...");
+            Console.ReadLine();
+            showMenuInscripcion();
+        }
+
+        private void listarOferta()
+        {
+            Programa? programa;
+            string? idPrograma;
+            Console.Clear();
+            listarProgramas();
+            do
+            {
+                idPrograma = pedirValorString("Id del programa en donde se va a ofertar");
+                programa = _programas.FirstOrDefault(p => p.id_programa == idPrograma);
+                if (programa == null)
+                {
+                    Console.WriteLine("Programa no encontrado.");
+                }
+            } while (programa == null);
+            Console.Clear();
+            Console.WriteLine("Oferta Educativa");
+            foreach (GrupoMateria item in _grupoMateria.Where(gm=>gm.programa==programa))
+            {
+                Console.WriteLine(item.ToString());
+            }
+            
+        }
+
+        private void ofertarMateria()
+        {
+            Programa? programa;
+            string? idPrograma;
+            Console.Clear();
+            listarProgramas();
+            do
+            {
+                idPrograma = pedirValorString("Id del programa en donde se va a ofertar");
+                programa = _programas.FirstOrDefault(p => p.id_programa == idPrograma);
+                if (programa == null)
+                {
+                    Console.WriteLine("Programa no encontrado.");
+                }
+            } while (programa == null);
+
+            Grupo? grupo;
+            int? idGrupo;
+            Console.Clear();
+            listarGrupos();
+            do
+            {
+                idGrupo = pedirValorInt("Id del grupo en donde se va a ofertar");
+                grupo = _grupos.FirstOrDefault(g => g.id_grupo == idGrupo);
+                if (grupo == null)
+                {
+                    Console.WriteLine("Grupo no encontrado.");
+                }
+            } while (grupo == null);
+
+            Materia? materia;
+            string? idMateria;
+            Console.Clear();
+            listarMaterias();
+            do
+            {
+                idMateria = pedirValorString("Id la Materia que se va a ofertar");
+                materia = _materias.FirstOrDefault(m => m.idMateria == idMateria);
+                if (materia == null)
+                {
+                    Console.WriteLine("Materia no encontrada.");
+                }
+            } while (materia == null);
+
+            string? horario;
+            string? docente;
+            horario = pedirValorString("Horario");
+            docente = pedirValorString("Docente");
+            GrupoMateria grupoMateria = new GrupoMateria(_grupoMateria.Count()+1, materia, grupo, programa, docente, horario);
+            _grupoMateria.Add(grupoMateria);
+            Console.WriteLine("Se ofertó la materia correctamente. Presiona 'Enter' para continuar...");
+            Console.ReadLine();
+            showMenuInscripcion();
         }
 
         private void showMenuAdminEstudiantes()
@@ -135,11 +314,11 @@ namespace ControlEscolar
                 apaterno = pedirValorString("Apellido Paterno");
                 amaterno = pedirValorString("Apellido Materno");
                 email = pedirValorString("Email");
-                estudiante.curp=curp;
-                estudiante.nombre=nombre;
-                estudiante.apellido_paterno=apaterno;
-                estudiante.apellido_materno=amaterno;
-                estudiante.email=email;
+                estudiante.curp = curp;
+                estudiante.nombre = nombre;
+                estudiante.apellido_paterno = apaterno;
+                estudiante.apellido_materno = amaterno;
+                estudiante.email = email;
                 Console.WriteLine($"El Estudiante con Matrícula: {estudiante.matricula} se editó correctamente. Presiona 'Enter' para continuar...");
             }
             Console.ReadLine();
@@ -172,7 +351,7 @@ namespace ControlEscolar
             }
             else
             {
-                
+
                 Estudiante nuevoEstudiante = new Estudiante(matricula, curp, nombre, apaterno, amaterno, email, null, null, programa);
                 _estudiantes.Add(nuevoEstudiante);
                 Console.WriteLine("Estudiante registrado correctamente. Presiona 'Enter' para continuar...");
@@ -801,7 +980,7 @@ namespace ControlEscolar
         {
             int valor;
             Console.Write($"{texto}: ");
-            while (int.TryParse(Console.ReadLine(), out valor))
+            while (!int.TryParse(Console.ReadLine(), out valor))
             {
                 Console.WriteLine("Valor inválido. Debes ingresar un número.");
                 Console.Write($"{texto}: ");
@@ -826,10 +1005,14 @@ namespace ControlEscolar
             Grupo grupo2 = new Grupo(2, "4", "B");
             _grupos.Add(grupo1);
             _grupos.Add(grupo2);
-            Estudiante estudiante1 = new Estudiante("22300348","SDT870818LU","Sergio","Duron","Torres","temporal@temp.com",null,null,programa1);
-            Estudiante estudiante2 = new Estudiante("22300349","JPP880920MA","Jorge","Perez","Perez","temporal2@temp.com",null,null,programa2);
+            Estudiante estudiante1 = new Estudiante("22300348", "SDT870818LU", "Sergio", "Duron", "Torres", "temporal@temp.com", null, null, programa1);
+            Estudiante estudiante2 = new Estudiante("22300349", "JPP880920MA", "Jorge", "Perez", "Perez", "temporal2@temp.com", null, null, programa2);
             _estudiantes.Add(estudiante1);
             _estudiantes.Add(estudiante2);
+            GrupoMateria gm1 = new GrupoMateria(_grupoMateria.Count()+1,materia2,grupo2,programa2,"Miles","10:00 a 12:00");
+            _grupoMateria.Add(gm1);
+            GrupoMateria gm2 = new GrupoMateria(_grupoMateria.Count()+1,materia1,grupo2,programa2,"Miles","12:00 a 14:00");
+            _grupoMateria.Add(gm2);
         }
     }
 

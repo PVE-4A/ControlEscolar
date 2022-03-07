@@ -8,6 +8,13 @@ namespace ControlEscolar.Models
 {
     internal class GrupoMateria
     {
+        private int _idGrupoMateria;
+        public int idGrupoMateria
+        {
+            get { return _idGrupoMateria; }
+            set { _idGrupoMateria = value; }
+        }
+        
         private string? _horario;
         private string? _docente;
         private Grupo _grupo;
@@ -20,14 +27,15 @@ namespace ControlEscolar.Models
         }
         
 
-        public GrupoMateria(Materia materia, Grupo grupo, Programa programa)
+        public GrupoMateria(int idGrupoMateria,Materia materia, Grupo grupo, Programa programa)
         {
+            _idGrupoMateria=idGrupoMateria;
             this._materia = materia;
             this._grupo = grupo;
             this._programa=programa;
         }
 
-        public GrupoMateria(Materia materia, Grupo grupo,Programa programa, string docente, string horario) : this(materia, grupo, programa)
+        public GrupoMateria(int idGrupoMateria,Materia materia, Grupo grupo,Programa programa, string docente, string horario) : this(idGrupoMateria,materia, grupo, programa)
         {
             this._docente = docente;
             this._horario = horario;
@@ -58,6 +66,9 @@ namespace ControlEscolar.Models
             get { return _horario; }
             set { _horario = value; }
         }
-
+        public override string ToString()
+        {
+            return $"Id: {_idGrupoMateria}, Materia: {_materia.nombreMateria}, Grupo:{_grupo.grado+_grupo.nombre}";
+        }
     }
 }
