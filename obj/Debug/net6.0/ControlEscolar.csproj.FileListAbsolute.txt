@@ -17,7 +17,6 @@ C:\Users\new_s\source\repos\ControlEscolar\bin\Debug\net6.0\ControlEscolar.exe
 C:\Users\new_s\source\repos\ControlEscolar\bin\Debug\net6.0\ControlEscolar.deps.json
 C:\Users\new_s\source\repos\ControlEscolar\bin\Debug\net6.0\ControlEscolar.runtimeconfig.json
 C:\Users\new_s\source\repos\ControlEscolar\bin\Debug\net6.0\ControlEscolar.dll
-C:\Users\new_s\source\repos\ControlEscolar\bin\Debug\net6.0\ref\ControlEscolar.dll
 C:\Users\new_s\source\repos\ControlEscolar\bin\Debug\net6.0\ControlEscolar.pdb
 C:\Users\new_s\source\repos\ControlEscolar\obj\Debug\net6.0\ControlEscolar.csproj.AssemblyReference.cache
 C:\Users\new_s\source\repos\ControlEscolar\obj\Debug\net6.0\ControlEscolar.GeneratedMSBuildEditorConfig.editorconfig
@@ -28,3 +27,4 @@ C:\Users\new_s\source\repos\ControlEscolar\obj\Debug\net6.0\ControlEscolar.dll
 C:\Users\new_s\source\repos\ControlEscolar\obj\Debug\net6.0\ref\ControlEscolar.dll
 C:\Users\new_s\source\repos\ControlEscolar\obj\Debug\net6.0\ControlEscolar.pdb
 C:\Users\new_s\source\repos\ControlEscolar\obj\Debug\net6.0\ControlEscolar.genruntimeconfig.cache
+C:\Users\new_s\source\repos\ControlEscolar\obj\Debug\net6.0\refint\ControlEscolar.dll
