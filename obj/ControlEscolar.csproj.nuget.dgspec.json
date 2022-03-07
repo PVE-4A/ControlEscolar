@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\new_s\\Documents\\CEII\\Clases .NET\\ControlEscolar\\ControlEscolar.csproj": {}
+    "C:\\Users\\new_s\\source\\repos\\ControlEscolar\\ControlEscolar.csproj": {}
   },
   "projects": {
-    "C:\\Users\\new_s\\Documents\\CEII\\Clases .NET\\ControlEscolar\\ControlEscolar.csproj": {
+    "C:\\Users\\new_s\\source\\repos\\ControlEscolar\\ControlEscolar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\new_s\\Documents\\CEII\\Clases .NET\\ControlEscolar\\ControlEscolar.csproj",
+        "projectUniqueName": "C:\\Users\\new_s\\source\\repos\\ControlEscolar\\ControlEscolar.csproj",
         "projectName": "ControlEscolar",
-        "projectPath": "C:\\Users\\new_s\\Documents\\CEII\\Clases .NET\\ControlEscolar\\ControlEscolar.csproj",
+        "projectPath": "C:\\Users\\new_s\\source\\repos\\ControlEscolar\\ControlEscolar.csproj",
         "packagesPath": "C:\\Users\\new_s\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\new_s\\Documents\\CEII\\Clases .NET\\ControlEscolar\\obj\\",
+        "outputPath": "C:\\Users\\new_s\\source\\repos\\ControlEscolar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\new_s\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

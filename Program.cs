@@ -1,2 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using ControlEscolar.Models;
+using ControlEscolar;
+// See https://aka.ms/new-console-template for more information
+ControlEscolarAdmin control = new ControlEscolarAdmin();
+control.showMenuPrincipal();
